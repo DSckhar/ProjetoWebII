@@ -1,0 +1,16 @@
+body{
+    background-image: url(../media/fundo.jpg) ;
+}
+
+nav .navbar{
+    background-color: transparent !important;
+}
+
+.nav-item{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.btn-link{
+    color: #28a745 !important;
+}
