@@ -11,33 +11,76 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
 </head>
+
 <body>
     <div class="contanier-fluid">
         <div class="row">
-            <div id="sidebar" class="col-4" height="100%">
-                <div class="row ">
-                    <div class="col-12">
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Link dropdown
-                            </a>
+            <div class="col-3">
+                <div class="row">
+                    <div id="sidebar" class="col-12">
+                        <h4><span style="color: #28a745;" data-feather="award"></span>ÔmegaCursos</h4>
+                        <div class="accordion" id="accordionSidebar">
+                             <div class="card">
+                                <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#aluno" aria-expanded="true" aria-controls="collapseOne">
+                                    <span data-feather="users"></span> Aluno
+                                </button>
+                                <div id="aluno" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                                    <div class="bg-light border-right" id="sidebar-wrapper">
+                                        <div class="list-group list-group-flush">
+                                            <a href="/aluno" class="list-group-item list-group-item-action bg-light">Visualizar</a>
+                                            <a href="/aluno/cadastrar" class="list-group-item list-group-item-action bg-light">Cadastrar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <div class="contanier-fluid dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Alguma ação</a>
-                                <a class="dropdown-item" href="#">Outra ação</a>
-                                <a class="dropdown-item" href="#">Alguma coisa aqui</a>
+                            <div class="card">
+                            <button class="btn" type="button" data-toggle="collapse" data-target="#" aria-expanded="true" aria-controls="collapseOne">
+                                    <span data-feather=""></span> 
+                                </button>
+                                <div id="" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                                    <div class="bg-light border-right" id="sidebar-wrapper" >
+                                        <div class="list-group list-group-flush">
+                                            <a href="/" class="list-group-item list-group-item-action bg-light">Visualizar</a>
+                                            <a href="//cadastrar" class="list-group-item list-group-item-action bg-light">Cadastrar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                            <button class="btn" type="button" data-toggle="collapse" data-target="#" aria-expanded="true" aria-controls="collapseOne">
+                                    <span data-feather=""></span> 
+                                </button>
+                                <div id="" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                                    <div class="bg-light border-right" id="sidebar-wrapper" >
+                                        <div class="list-group list-group-flush">
+                                            <a href="/aluno" class="list-group-item list-group-item-action bg-light">Visualizar</a>
+                                            <a href="/aluno/cadastrar" class="list-group-item list-group-item-action bg-light">Cadastrar</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="main" class="col-8">
-                <div id="navbar" class="row">
-                
+
+            <div class="col-9">
+                <div id="navbar" class="row justify-content-end">
+                    <div class="col-6 col-md-3">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <a class="btn btn-success" href="/usuario/perfil/"><strong>Nome usuário</strong></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/sair">Sair</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div id="content" class="row">
-                
-                </div>
+
+                @yield('content')
             </div>
         </div>
     </div>
@@ -47,12 +90,15 @@
         <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>        
         <script src="{{asset('js/bootstrap.min.js')}}"></script>
         <script src="{{asset('DataTables/datatables.min.js')}}"></script>
+        <script src="https://unpkg.com/feather-icons"></script>
         <script type="text/javascript">
             $(document).ready( function () {
                 $('#tabela').DataTable();
             });
         </script>
-
+        <script type="text/javascript">
+            feather.replace()
+        </script>
 
     </footer>
 </body>

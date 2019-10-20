@@ -1,0 +1,22 @@
+body{
+    padding: 1.5%;
+}
+
+div#sidebar h4{
+    text-align: center; 
+    margin-top: 1%;
+}
+
+div#accordionSidebar{
+    padding-right: 10%; 
+    padding-top: 5%;
+    padding-left: 2%;
+}
+
+div.list-group{
+    text-align: center;
+}
+
+div.content{
+    margin-top: 1.7%;
+}
