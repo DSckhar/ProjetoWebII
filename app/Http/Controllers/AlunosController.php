@@ -36,8 +36,17 @@ class AlunosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $aluno = $request->except('_token');
+        $alunos = Alunos::all()->where('email', '=', $aluno['email']);
+
+        if (count($alunos) > 0) {
+            return back()->with('mensagem', 'E-Mail já cadastrado para um aluno!');
+        }else{
+            $aluno = Alunos::store($aluno);
+            return redirect()->action('AlunosController@index');
+        }
+
     }
 
     /**

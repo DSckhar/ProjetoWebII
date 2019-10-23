@@ -15,9 +15,10 @@ class CreateAlunosTable extends Migration
     {
         Schema::create('alunos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('nome', 60);
-            $table->Integer('nMatricula')->unique();
-            $table->String('foto', 255)->nullable();
+            $table->String('nome', 30);
+            $table->date('nascimento');
+            $table->String('nMatricula', 16)->unique();
+            $table->String('email', 40)->unique();
             $table->timestamps();
         });
     }

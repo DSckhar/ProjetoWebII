@@ -1,22 +1,30 @@
-body{
-    padding: 1.5%;
+div.block-header-default{
+    background-color: #9ccc65 !important;
 }
 
-div#sidebar h4{
-    text-align: center; 
-    margin-top: 1%;
+.block-title{
+    color: white  !important;
 }
 
-div#accordionSidebar{
-    padding-right: 10%; 
-    padding-top: 5%;
-    padding-left: 2%;
+.btn-block-option{
+    color: white;
+    font-weight: bold;
 }
 
-div.list-group{
-    text-align: center;
+thead tr th{
+    text-transform: none !important;
+    font-weight: bold !important;
 }
 
-div.content{
-    margin-top: 1.7%;
+.no-sort::after { 
+    display: none!important; 
+}
+
+.no-sort::before { 
+    display: none!important; 
+}
+
+.no-sort { 
+    pointer-events: none!important; 
+    cursor: default!important; 
 }

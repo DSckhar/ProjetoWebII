@@ -15,4 +15,17 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::resource('/aluno', 'AlunosController')->middleware('auth');
+Route::group(['middleware' => 'auth'], function(){
+    
+    //ALUNO
+    Route::resource('/aluno', 'AlunosController');
+
+    //CURSO
+    Route::resource('/curso', 'CursosController');
+
+    //PROFESSOR
+    Route::resource('/professor', 'ProfessoresController');
+
+    //DISCIPLINA
+    Route::resource('/disciplina', 'DisciplinasController');
+});
