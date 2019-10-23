@@ -62,9 +62,23 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="nav-menu active" href="{{route('disciplina.index')}}">
+                                <a class="nav-submenu active" data-toggle="nav-submenu" href="#">
                                     <i class="si si-book-open"></i>
                                     <span class="sidebar-mini-hide">Disciplinas</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="{{route('disciplina.index')}}">Ver Todas</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Ver Correntes</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-menu active" href="{{route('semestre.index')}}">
+                                    <i class="si si-pin"></i>
+                                    <span class="sidebar-mini-hide">Semestres</span>
                                 </a>
                             </li>
                             <li>

@@ -16,7 +16,6 @@ class SemestresController extends Controller
     public function index()
     {
         $user = Auth::user();
-
         $semestres = Semestres::all();
         return view('semestre.index', compact('semestres', 'user'));
     }
