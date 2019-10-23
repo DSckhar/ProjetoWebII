@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\Alunos;
+use App\Models\Semestres;
 use Illuminate\Http\Request;
 
-class AlunosController extends Controller
+class SemestresController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class AlunosController extends Controller
     {
         $user = Auth::user();
 
-        $alunos = Alunos::all();
-        return view('aluno.index', compact('alunos', 'user'));
+        $semestres = Semestres::all();
+        return view('semestre.index', compact('semestres', 'user'));
     }
 
     /**
@@ -38,31 +38,25 @@ class AlunosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $aluno = $request->except('_token');
-        $alunosEmail = Alunos::all()->where('email', '=', $aluno['email']);
-        $alunosNum = Alunos::all()->Where('nMatricula', '=', $aluno['nMatricula']);
+    {
+        $semestre = $request->except('_token');
+        $semestres = Semestres::all()->where('descricao', '=', $semestre['descricao']);
 
-        if (count($alunosEmail) > 0  && count($alunosNum) > 0) {
-            return back()->with('mensagem', 'E-Mail e Número de matrícula já cadastrados para um aluno!');
-        }elseif (count($alunosEmail) > 0){
-            return back()->with('mensagem', 'E-Mail já cadastrado para um aluno!');
-        }elseif (count($alunosNum) > 0){
-            return back()->with('mensagem', 'Número de matrícula já cadastrado para um aluno!');
+        if (count($semestres) > 0){
+            return back()->with('mensagem', 'Semestres já cadastrado!');
         }else{
-            $aluno = Alunos::store($aluno);
-            return redirect()->action('AlunosController@index');
+            $semestre = Semestres::store($semestre);
+            return redirect()->action('SemestresController@index');
         }
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Alunos  $alunos
+     * @param  \App\Models\Semestres  $semestres
      * @return \Illuminate\Http\Response
      */
-    public function show(Alunos $alunos)
+    public function show(Semestres $semestres)
     {
         //
     }
@@ -70,10 +64,10 @@ class AlunosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Alunos  $alunos
+     * @param  \App\Models\Semestres  $semestres
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alunos $alunos)
+    public function edit(Semestres $semestres)
     {
         //
     }
@@ -82,10 +76,10 @@ class AlunosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Alunos  $alunos
+     * @param  \App\Models\Semestres  $semestres
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alunos $alunos)
+    public function update(Request $request, Semestres $semestres)
     {
         //
     }
@@ -93,10 +87,10 @@ class AlunosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Alunos  $alunos
+     * @param  \App\Models\Semestres  $semestres
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alunos $alunos)
+    public function destroy(Semestres $semestres)
     {
         //
     }

@@ -28,4 +28,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     //DISCIPLINA
     Route::resource('/disciplina', 'DisciplinasController');
+
+    //SEMESTRE
+    Route::resource('/semestre', 'SemestresController');
 });

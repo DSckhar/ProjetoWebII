@@ -10,6 +10,7 @@ class Alunos extends Model
         'nome',
         'nascimento',
         'email',
+        'nMatricula'
     ];
 
     public static function store($aluno){
@@ -19,5 +20,6 @@ class Alunos extends Model
         $alunos->nome = $aluno['nome'];
         $alunos->nascimento = $aluno['nascimento'];
         $alunos->email = $aluno['email'];
+        $alunos->nMatricula = $aluno['nMatricula'];
         $alunos->save();
     }}

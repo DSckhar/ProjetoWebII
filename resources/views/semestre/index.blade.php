@@ -73,7 +73,6 @@
                                         <th>Nome</th>
                                         <th>Nascimento</th>
                                         <th>E-Mail</th>
-                                        <th>Nº de Matrícula</th>
                                         <th class="no-sort"></th>
                                         <th class="no-sort"></th>
                                         <th class="no-sort"></th>
@@ -87,7 +86,6 @@
                                         <td>{{$aluno->nome}}</td>
                                         <td>{{$aluno->nascimento}}</td>
                                         <td>{{$aluno->email}}</td>
-                                        <td>{{$aluno->nMatricula}}</td>
                                         <td>
                                             <a href="" type="submit" class="badge badge-success" >
                                                 <img src="{{asset('media\favicons\eye.png')}}">
@@ -113,7 +111,6 @@
                                         <th>Nome</th>
                                         <th>Nascimento</th>
                                         <th>E-Mail</th>
-                                        <th>Nº de Matrícula</th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
