@@ -71,7 +71,7 @@
                                         <a href="{{route('disciplina.index')}}">Ver Todas</a>
                                     </li>
                                     <li>
-                                        <a href="">Ver Correntes</a>
+                                        <a href="{{route('semestreDisciplina')}}">Ver Correntes</a>
                                     </li>
                                 </ul>
                             </li>
@@ -182,6 +182,9 @@
         <script type="text/javascript">
             $(document).ready( function () {
                 $('#tabela').DataTable();
+            });
+            $(document).ready( function () {
+                $('#tabela2').DataTable();
             });
         </script>
         </footer>

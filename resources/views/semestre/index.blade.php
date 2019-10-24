@@ -61,9 +61,9 @@
                                                     <td>{{$cont}}</td>
                                                     <td>{{$semestre->descricao}}</td>
                                                     <td>
-                                                        <button class="btn btn-outline-danger" onclick="window.location.href=''" >
-                                                            <span data-feather="trash-2"></span>
-                                                        </button>
+                                                        <a href="" type="submit" class="badge badge-danger" >
+                                                            <img src="{{asset('media\favicons\remove.png')}}">
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 <?php $cont ++; ?>

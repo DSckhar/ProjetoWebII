@@ -16,7 +16,7 @@ class SemestresController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $semestres = Semestres::all();
+        $semestres = Semestres::all()->sortByDesc('created_at');
         return view('semestre.index', compact('semestres', 'user'));
     }
 

@@ -18,17 +18,21 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function(){
     
     //ALUNO
-    Route::resource('/aluno', 'AlunosController');
+    Route::resource('aluno', 'AlunosController');
 
     //CURSO
-    Route::resource('/curso', 'CursosController');
+    Route::resource('curso', 'CursosController');
 
     //PROFESSOR
-    Route::resource('/professor', 'ProfessoresController');
+    Route::resource('professor', 'ProfessoresController');
 
     //DISCIPLINA
-    Route::resource('/disciplina', 'DisciplinasController');
+    Route::resource('disciplina', 'DisciplinasController');
 
     //SEMESTRE
-    Route::resource('/semestre', 'SemestresController');
+    Route::resource('semestre', 'SemestresController');
+
+    //SEMESTREDISCIPLINAS
+    Route::post('semestredisciplina/cadastrado', 'SemestreDisciplinasController@store')->name('semestreDisciplina.store');
+    Route::get('semestredisciplina', 'SemestreDisciplinasController@index')->name('semestreDisciplina');
 });
