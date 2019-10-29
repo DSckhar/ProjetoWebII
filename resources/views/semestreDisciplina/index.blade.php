@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-10">
+                        <div class="col-6">
                             @if(session('mensagem'))
                                 <div class="alert alert-danger">
                                     <span>{{session('mensagem')}}</span>

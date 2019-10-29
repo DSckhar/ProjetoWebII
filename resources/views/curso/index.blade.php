@@ -66,7 +66,7 @@
                                         <th>Nº</th>
                                         <th>Nome</th>
                                         <th>Preço</th>
-                                        <th>Duração</th>
+                                        <th>Total de Módulos</th>
                                         <th class="no-sort"></th>
                                         <th class="no-sort"></th>
                                         <th class="no-sort"></th>
@@ -81,7 +81,7 @@
                                         <td>{{$curso->valor}}</td>
                                         <td>{{$curso->duracao}}</td>
                                         <td>
-                                            <a href="" type="submit" class="badge badge-success" >
+                                            <a href="{{route('curso.show', $curso->id)}}" type="submit" class="badge badge-success" >
                                                 <img src="{{asset('media\favicons\eye.png')}}">
                                             </a>
                                         </td>
@@ -104,7 +104,7 @@
                                         <th>Nº</th>
                                         <th>Nome</th>
                                         <th>Preço</th>
-                                        <th>Duração</th>
+                                        <th>Total de Módulos</th>
                                         <th></th>
                                         <th></th>
                                         <th></th>

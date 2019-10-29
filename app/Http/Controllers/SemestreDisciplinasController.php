@@ -48,7 +48,8 @@ class SemestreDisciplinasController extends Controller
     {
         $semestreDisciplina = $request->except('_token');
         $semestreDisciplinas = SemestreDisciplinas::all()
-            ->where('idDisciplina', '=', $semestreDisciplina['idDisciplina']);
+            ->where('idDisciplina', '=', $semestreDisciplina['idDisciplina'])
+            ->where('idSemestre', '=', $semestreDisciplina['idSemestre']);
 
         if (count($semestreDisciplinas) > 0) {
             return back()->with('mensagem', 'A disciplina selecionada já está sendo ofertada no semestre atual!');

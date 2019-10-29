@@ -10,6 +10,7 @@ class Disciplinas extends Model
     protected $fillable = [
         'nome',
         'valor',
+        'modulo',
         'idCurso',
     ];
 
@@ -19,6 +20,7 @@ class Disciplinas extends Model
 
         $disciplinas->nome = $disciplina['nome'];
         $disciplinas->valor = $disciplina['valor'];
+        $disciplinas->modulo = $disciplina['modulo'];
         $disciplinas->idCurso = $disciplina['idCurso'];
         $disciplinas->save();
     }

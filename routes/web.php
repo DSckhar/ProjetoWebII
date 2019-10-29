@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('aluno', 'AlunosController');
 
     //CURSO
+    Route::post('curso/editado', 'CursosController@update')->name('curso.editado');
     Route::resource('curso', 'CursosController');
 
     //PROFESSOR

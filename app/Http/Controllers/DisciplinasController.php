@@ -46,9 +46,12 @@ class DisciplinasController extends Controller
         $disciplinas = Disciplinas::all()
             ->where('nome', '=', $disciplina['nome'])
             ->where('idCurso', '=', $disciplina['idCurso']);
+        $curso = Cursos::find($disciplina['idCurso']);
 
         if (count($disciplinas) > 0) {
             return back()->with('mensagem', 'O curso selecionado já possui uma disciplina com este nome!');
+        }elseif($disciplina['modulo'] > $curso['duracao']){
+            return back()->with('mensagem', 'A quantidade de módulos do curso selecionado é menor do que o módulo informado!');
         }else{
             $disciplina = Disciplinas::store($disciplina);
             return redirect()->action('DisciplinasController@index');

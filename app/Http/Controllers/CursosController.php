@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cursos;
+use App\Models\Disciplinas;
 use Illuminate\Http\Request;
 
 class CursosController extends Controller
@@ -57,9 +58,13 @@ class CursosController extends Controller
      * @param  \App\Models\Cursos  $cursos
      * @return \Illuminate\Http\Response
      */
-    public function show(Cursos $cursos)
+    public function show($id)
     {
-        //
+        $user = Auth::user();
+        $curso = Cursos::find($id);
+        $disciplinas = Disciplinas::all()->where('idCurso', '=', $id);
+
+        return view('curso.show', compact('curso', 'disciplinas', 'user'));
     }
 
     /**
@@ -80,9 +85,24 @@ class CursosController extends Controller
      * @param  \App\Models\Cursos  $cursos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cursos $cursos)
+    public function update(Request $request)
     {
-        //
+        $cursos = $request->except('_token');
+        $curso = Cursos::find($cursos['id']);
+
+        $todosCursos = Cursos::all()
+            ->where('id', '!=', $cursos['id'])
+            ->where('nome', '=', $cursos['nome']);
+
+        if (count($todosCursos) > 0) {
+            return back()->with('mensagem', 'Já existe outro curso cadastrado com esse nome!');
+        }else{
+            $curso->nome = $cursos['nome'];
+            $curso->valor = $cursos['valor'];
+            $curso->duracao = $cursos['duracao'];
+            $curso->save();
+            return redirect()->action('CursosController@show', [$cursos['id']]);
+        }
     }
 
     /**

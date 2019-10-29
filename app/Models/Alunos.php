@@ -22,4 +22,5 @@ class Alunos extends Model
         $alunos->email = $aluno['email'];
         $alunos->nMatricula = $aluno['nMatricula'];
         $alunos->save();
-    }}
+    }
+}
