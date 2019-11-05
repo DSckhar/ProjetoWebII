@@ -1,15 +1,22 @@
 @extends('admin') 
 @section('content')
 <div class="content">
-        <div class="block">
-            <div class="block-header block-header-default">
-                <h2 class="block-title">CURSO: <strong>{{$curso->nome}}</strong></h2>
-                <div class="block-options">
-                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
-                </div>
+    <div class="block">
+        <div class="block-header block-header-default">
+            <h2 class="block-title">CURSO: <strong>{{$curso->nome}}</strong></h2>
+            <div class="block-options">
+                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
             </div>
-            <div class="block-content">
-                <div class="contanier-fluid">
+        </div>
+        <div class="block-content">
+            <div class="contanier-fluid">
+                <div class="row justify-content-end">
+                    <div class="col-1">
+                        <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('curso.deletado', $curso->id)}}'" >
+                            <span data-feather="trash-2"></span>
+                        </button>
+                    </div>
+                </div>
                 <form method='post' action="{{route('curso.editado')}}">
                     <div class="row justify-content-center">
                         <div class="col-4">
@@ -45,10 +52,10 @@
                     </div>
                     <br/>
                 </form>
-                </div>
             </div>
         </div>
     </div>
+</div>
 <div class="content">
         <div class="block">
             <div class="block-header block-header-default">
@@ -70,7 +77,6 @@
                                         <th>Módulo de Ocorrência</th>
                                         <th class="no-sort"></th>
                                         <th class="no-sort"></th>
-                                        <th class="no-sort"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,19 +88,14 @@
                                         <td>{{$disciplina->valor}}</td>
                                         <td>{{$disciplina->modulo}}</td>
                                         <td>
-                                            <a href="{{route('curso.show', $disciplina->id)}}" type="submit" class="badge badge-success" >
-                                                <img src="{{asset('media\favicons\eye.png')}}">
-                                            </a>
+                                            <button class="btn badge btn-outline-success" onclick="window.location.href='{{route('disciplina.show', $disciplina->id)}}'" >
+                                                <span data-feather="eye"></span>
+                                            </button>
                                         </td>
                                         <td>
-                                            <a href="" type="submit" class="badge badge-success" >
-                                                <img src="{{asset('media\favicons\edit.png')}}">
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="" type="submit" class="badge badge-danger" >
-                                                <img src="{{asset('media\favicons\remove.png')}}">
-                                            </a>
+                                            <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('disciplina.deletado', $disciplina->id)}}'" >
+                                                <span data-feather="trash-2"></span>
+                                            </button>
                                         </td>
                                     </tr>
                                     <?php $cont ++;?>
@@ -106,7 +107,6 @@
                                         <th>Nome</th>
                                         <th>Preço</th>
                                         <th>Módulo de Ocorrência</th>
-                                        <th></th>
                                         <th></th>
                                         <th></th>
                                     </tr>

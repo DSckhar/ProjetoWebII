@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Alunos;
+use App\Models\Matriculas;
 use Illuminate\Http\Request;
 
 class AlunosController extends Controller
@@ -28,7 +29,7 @@ class AlunosController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -62,9 +63,18 @@ class AlunosController extends Controller
      * @param  \App\Models\Alunos  $alunos
      * @return \Illuminate\Http\Response
      */
-    public function show(Alunos $alunos)
+    public function show($id)
     {
-        //
+        $user = Auth::user();
+        $aluno = Alunos::find($id);
+        $matriculas = Matriculas::listar()->where('idAluno', '=', $id);
+        $ativa = Matriculas::listar()->where('idAluno', '=', $id)->where('status', '=', 'ativo');
+        if (count($ativa) > 0) {
+            $ativa = "true";
+        }else{
+            $ativa = "false";
+        }
+        return view('aluno.show', compact('aluno', 'matriculas', 'ativa', 'user'));
     }
 
     /**
@@ -73,7 +83,7 @@ class AlunosController extends Controller
      * @param  \App\Models\Alunos  $alunos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alunos $alunos)
+    public function edit(Request $request)
     {
         //
     }
@@ -87,7 +97,23 @@ class AlunosController extends Controller
      */
     public function update(Request $request, Alunos $alunos)
     {
-        //
+        $alunos = $request->except('_token');
+        $aluno = Alunos::find($alunos['id']);
+
+        $todosAlunos = Alunos::all()
+            ->where('id', '!=', $alunos['id'])
+            ->where('email', '=', $alunos['email']);
+
+        if (count($todosAlunos) > 0 ) {
+            return back()->with('mensagem', 'E-Mail já cadastrado para um aluno!');
+        }else{
+            $aluno->nome = $alunos['nome'];
+            $aluno->email = $alunos['email'];
+            $aluno->nascimento = $alunos['nascimento'];
+            $aluno->save();
+
+            return redirect()->route('aluno.show', $alunos['id']);
+        }
     }
 
     /**
@@ -96,8 +122,10 @@ class AlunosController extends Controller
      * @param  \App\Models\Alunos  $alunos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alunos $alunos)
+    public function destroy($id)
     {
-        //
+        $aluno = Alunos::find($id)->delete();
+
+        return redirect()->action('AlunosController@index');
     }
 }

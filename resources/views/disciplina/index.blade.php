@@ -91,14 +91,14 @@
                                         <td>{{$disciplina->valor}}</td>
                                         <td>{{$disciplina->nomeCurso}}</td>
                                         <td>
-                                            <a href="" type="submit" class="badge badge-success" >
-                                                <img src="{{asset('media\favicons\edit.png')}}">
-                                            </a>
+                                            <button class="btn badge btn-outline-success" onclick="window.location.href='{{route('disciplina.show', $disciplina->id)}}'" >
+                                                <span data-feather="eye"></span>
+                                            </button>
                                         </td>
                                         <td>
-                                            <a href="" type="submit" class="badge badge-danger" >
-                                                <img src="{{asset('media\favicons\remove.png')}}">
-                                            </a>
+                                            <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('disciplina.deletado', $disciplina->id)}}'" >
+                                                <span data-feather="trash-2"></span>
+                                            </button>
                                         </td>
                                     </tr>
                                     <?php $cont ++;?>

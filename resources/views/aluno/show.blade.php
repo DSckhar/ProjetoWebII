@@ -1,30 +1,45 @@
 @extends('admin') 
 @section('content')
 <div class="content">
-        <div class="block">
-            <div class="block-header block-header-default">
-                <h2 class="block-title"><strong>CADASTRAR CURSO</strong></h2>
-                <div class="block-options">
-                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
-                </div>
+    <div class="block">
+        <div class="block-header block-header-default">
+            <h2 class="block-title">ALUNO: <strong>{{$aluno->nome}}</strong></h2>
+            <div class="block-options">
+                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
             </div>
-            <div class="block-content">
-                <div class="contanier-fluid">
-                <form method='post' action="{{route('curso.store')}}">
+        </div>
+        <div class="block-content">
+            <div class="contanier-fluid">
+                <div class="row justify-content-end">
+                    <div class="col-1">
+                        <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('aluno.deletado', $aluno->id)}}'" >
+                            <span data-feather="trash-2"></span>
+                        </button>
+                    </div>
+                </div>
+                <form method='post' action="{{route('aluno.editado')}}">
                     <div class="row justify-content-center">
                         <div class="col-4">
                             {!! csrf_field() !!}
+                            <input type="hidden" name="id" value='{{$aluno->id}}'>
                             <label for="nome">Nome</label>
                             <div class="form-group">
-                                <input id="nome" class="form-control" type="text" name="nome" maxlength="30" required/>
+                                <input id="id" class="form-control" value="{{$aluno->id}}" type="text" name="id"  hidden/>
+                                <input id="nome" class="form-control" value='{{$aluno->nome}}' type="text" name="nome" maxlength="30" required/>
                             </div>
-                            <label for="valor">Preço</label>
+                            <label for="nascimento">Data de Nascimento</label>
                             <div class="form-group">
-                                <input id="valor" class="form-control" type="number" name="valor" step="0.01" min="0" required/>
+                                <input id="nascimento" value='{{$aluno->nascimento}}' class="form-control" type="date" name="nascimento" required/>
                             </div>
-                            <label for="duracao">Duração (em módulos)</label>
+                        </div>
+                        <div class="col-4">
+                            <label for="email">E-Mail</label>
                             <div class="form-group">
-                                <input id="duracao" class="form-control" type="number" min="1" max="15" name="duracao" required/>
+                                <input id="email" class="form-control" value='{{$aluno->email}}' type="email" name="email" maxlength="40" required/>
+                            </div>
+                            <label for="nMatricula">Número de matrícula</label>
+                            <div class="form-group">
+                                <input id="nMatricula" class="form-control" value='{{$aluno->nMatricula}}' minlength="8" type="text" maxlength="8" pattern="[0-9]+$" name="nMatricula" disabled/>
                             </div>
                         </div>
                     </div>
@@ -39,20 +54,25 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-2" style="text-align: center;">
-                            <button type="submit" class="btn btn-outline-success">Enviar</button>
+                            <button type="submit" class="btn btn-outline-success">Salvar Alterações</button>
                         </div>
                     </div>
                     <br/>
                 </form>
-                </div>
             </div>
         </div>
     </div>
+</div>
 <div class="content">
         <div class="block">
             <div class="block-header block-header-default">
-                <h2 class="block-title"><strong>CURSOS</strong></h2>
+                <h2 class="block-title"><strong>MATRÍCULAS</strong></h2>
                 <div class="block-options">
+                    @if($ativa == "false")
+                    <button type="button" class="btn-block-option" onclick="window.location.href='{{route('matricula.criar', $aluno->id)}}'">
+                        <span data-feather="plus"></span>
+                    </button>
+                    @endif                   
                     <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
                 </div>
             </div>
@@ -64,28 +84,28 @@
                                 <thead>
                                     <tr>
                                         <th>Nº</th>
-                                        <th>Nome</th>
-                                        <th>Preço</th>
-                                        <th>Total de Módulos</th>
+                                        <th>Curso</th>
+                                        <th>Valor</th>
+                                        <th>Status</th>
                                         <th class="no-sort"></th>
                                         <th class="no-sort"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $cont = 1;?>
-                                    @foreach ($cursos as $curso)
+                                    @foreach ($matriculas as $matricula)
                                     <tr>
                                         <td>{{$cont}}</td>
-                                        <td>{{$curso->nome}}</td>
-                                        <td>{{$curso->valor}}</td>
-                                        <td>{{$curso->duracao}}</td>
+                                        <td>{{$matricula->nomeCurso}}</td>
+                                        <td>{{$matricula->valor}}</td>
+                                        <td>{{$matricula->status}}</td>
                                         <td>
-                                            <button class="btn badge btn-outline-success" onclick="window.location.href='{{route('curso.show', $curso->id)}}'" >
+                                            <button class="btn badge btn-outline-success" onclick="window.location.href='{{route('matricula.show', $matricula->id)}}'" >
                                                 <span data-feather="eye"></span>
                                             </button>
                                         </td>
                                         <td>
-                                            <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('curso.deletado', $curso->id)}}'" >
+                                            <button class="btn badge btn-outline-danger" onclick="window.location.href=''" >
                                                 <span data-feather="trash-2"></span>
                                             </button>
                                         </td>
@@ -96,9 +116,9 @@
                                 <tfoot>
                                     <tr>
                                         <th>Nº</th>
-                                        <th>Nome</th>
-                                        <th>Preço</th>
-                                        <th>Total de Módulos</th>
+                                        <th>Curso</th>
+                                        <th>Valor</th>
+                                        <th>Status</th>
                                         <th></th>
                                         <th></th>
                                     </tr>

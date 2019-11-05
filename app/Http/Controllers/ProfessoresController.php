@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Professores;
+use App\Models\Semestres;
+use App\Models\SemestreDisciplinas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -56,9 +58,22 @@ class ProfessoresController extends Controller
      * @param  \App\Models\Professores  $professores
      * @return \Illuminate\Http\Response
      */
-    public function show(Professores $professores)
+    public function show($id)
     {
-        //
+        $user = Auth::user();
+
+        $professor = Professores::find($id);
+        $semestre = Semestres::all()->last();
+
+        $disciplinasCorrentes = SemestreDisciplinas::listar()
+            ->where('idProfessor', '=', $professor['id'])
+            ->where('idSemestre', '=', $semestre['id']);
+        
+        $lecionadas = SemestreDisciplinas::listar()
+            ->where('idProfessor', '=', $professor['id'])
+            ->where('idSemestre', '!=', $semestre['id']);
+        
+        return view('professor.show', compact('professor', 'disciplinasCorrentes', 'lecionadas', 'user'));
     }
 
     /**
@@ -79,9 +94,28 @@ class ProfessoresController extends Controller
      * @param  \App\Models\Professores  $professores
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Professores $professores)
+    public function update(Request $request)
     {
-        //
+        $professores = $request->except('_token');
+        $professor = Professores::find($professores['id']);
+
+
+        $todosProfessores = Professores::all()
+            ->where('id', '!=', $professores['id'])
+            ->where('email', '=', $professores['email']);
+
+        if (count($todosProfessores) > 0) {
+            return back()->with('mensagem', 'E-Mail já cadastrado para um professor!');
+        }else{
+            
+            $professor->nome = $professores['nome'];
+            $professor->email = $professores['email'];
+            $professor->titulacao = $professores['titulacao'];
+            $professor->salario = $professores['salario'];
+            $professor->save();
+
+            return redirect()->route('professor.show', $professor['id']);
+        }
     }
 
     /**
@@ -90,8 +124,10 @@ class ProfessoresController extends Controller
      * @param  \App\Models\Professores  $professores
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Professores $professores)
+    public function destroy($id)
     {
-        //
+        $professor = Professores::find($id)->delete();
+
+        return redirect()->action('ProfessoresController@index');
     }
 }

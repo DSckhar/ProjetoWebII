@@ -33,4 +33,5 @@ class Disciplinas extends Model
         
         return $disciplinas;
     }
+    
 }

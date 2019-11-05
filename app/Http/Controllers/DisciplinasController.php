@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Disciplinas;
+use App\Models\SemestreDisciplinas;
 use App\Models\Cursos;
 use Illuminate\Http\Request;
 
@@ -64,9 +65,16 @@ class DisciplinasController extends Controller
      * @param  \App\Models\Disciplinas  $disciplinas
      * @return \Illuminate\Http\Response
      */
-    public function show(Disciplinas $disciplinas)
+    public function show($id)
     {
-        //
+        $user = Auth::user();
+        $disciplina = Disciplinas::find($id);
+        $curso = Cursos::find($disciplina['idCurso']);
+        $disciplina['nomeCurso'] = $curso['nome'];
+        $cursos = Cursos::all();
+        $semestreDisciplinas = SemestreDisciplinas::listar()->where('idDisciplina', '=', $id);
+        
+        return view('disciplina.show', compact('disciplina', 'cursos', 'semestreDisciplinas', 'user'));
     }
 
     /**
@@ -87,9 +95,30 @@ class DisciplinasController extends Controller
      * @param  \App\Models\Disciplinas  $disciplinas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Disciplinas $disciplinas)
+    public function update(Request $request)
     {
-        //
+        $disciplinas = $request->except('_token');
+        $disciplina = Disciplinas::find($disciplinas['id']);
+
+        $todasDisciplinas = Disciplinas::all()
+            ->where('id', '!=', $disciplina['id'])
+            ->where('nome', '=', $disciplina['nome'])
+            ->where('idCurso', '=', $disciplina['idCurso']);
+
+        $curso = Cursos::find($disciplinas['idCurso']);
+
+        if (count($todasDisciplinas) > 0) {
+            return back()->with('mensagem', 'O curso selecionado já possui uma disciplina com este nome!');
+        }elseif($disciplinas['modulo'] > $curso['duracao']){
+            return back()->with('mensagem', 'A quantidade de módulos do curso selecionado é menor do que o módulo informado!');
+        }else{
+            $disciplina->nome = $disciplinas['nome'];
+            $disciplina->valor = $disciplinas['valor'];
+            $disciplina->modulo = $disciplinas['modulo'];
+            $disciplina->idCurso = $disciplinas['idCurso'];
+            $disciplina->save();
+            return redirect()->route('disciplina.show', $disciplinas['id']);
+        }
     }
 
     /**
@@ -98,8 +127,10 @@ class DisciplinasController extends Controller
      * @param  \App\Models\Disciplinas  $disciplinas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Disciplinas $disciplinas)
+    public function destroy($id)
     {
-        //
+        $disciplina = Disciplinas::find($id)->delete();
+
+        return redirect()->action('DisciplinasController@index');
     }
 }

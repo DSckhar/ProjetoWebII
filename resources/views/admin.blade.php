@@ -95,6 +95,17 @@
                             </li>
                             <li>
                                 <a class="nav-submenu active" data-toggle="nav-submenu" href="#">
+                                    <i class="si si-grid"></i>
+                                    <span class="sidebar-mini-hide">Históricos</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="{{route('matricula.index')}}">Matrículas</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-submenu active" data-toggle="nav-submenu" href="#">
                                     <i class="si si-note"></i>
                                     <span class="sidebar-mini-hide"></span>
                                 </a>
@@ -174,8 +185,8 @@
         <!-- END Page Container -->
         <footer>
         <script src="{{asset('js/jquery.js')}}"></script>
+        <script src="{{asset('js/bootstrap.min.js')}}"></script>        
         <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>        
-        <script src="{{asset('js/bootstrap.min.js')}}"></script>
         <script src="{{asset('js/codebase.core.min.js')}}"></script>
         <script src="{{asset('js/codebase.app.min.js')}}"></script>
         <script src="{{asset('DataTables/datatables.min.js')}}"></script>        
@@ -186,6 +197,10 @@
             $(document).ready( function () {
                 $('#tabela2').DataTable();
             });
+        </script>
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+            feather.replace()
         </script>
         </footer>
     </body>

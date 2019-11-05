@@ -15,6 +15,12 @@ class CreateMatriculasTable extends Migration
     {
         Schema::create('matriculas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('idAluno');
+            $table->foreign('idAluno')->references('id')->on('alunos')->onDelete('cascade');   
+            $table->unsignedBigInteger('idCurso');
+            $table->foreign('idCurso')->references('id')->on('cursos')->onDelete('cascade');
+            $table->decimal('valor', 8, 2)->default(0.0);   
+            $table->String('status', 12)->default('ativo');
             $table->timestamps();
         });
     }

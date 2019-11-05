@@ -16,9 +16,12 @@ class CreateSemestreDisciplinasTable extends Migration
         Schema::create('semestre_disciplinas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('idSemestre');
+            $table->string('status', 16)->default('ativa');
             $table->foreign('idSemestre')->references('id')->on('semestres')->onDelete('cascade');  
             $table->unsignedBigInteger('idDisciplina');
-            $table->foreign('idDisciplina')->references('id')->on('disciplinas')->onDelete('cascade');   
+            $table->foreign('idDisciplina')->references('id')->on('disciplinas')->onDelete('cascade');
+            $table->unsignedBigInteger('idProfessor');
+            $table->foreign('idProfessor')->references('id')->on('professores')->onDelete('cascade');   
             $table->timestamps();
         });
     }

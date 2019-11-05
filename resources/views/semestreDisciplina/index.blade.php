@@ -19,16 +19,23 @@
                                 <input id="idSemestre" class="form-control" type="text" name="idSemestre" value="{{$semestreAtual->id}}" hidden/>
                                 <input id="semestre" class="form-control" type="text" name="semestre" value="{{$semestreAtual->descricao}}" disabled/>
                             </div>
-                        </div>
-                        <div class="col-4">
                             <label for="idDisciplina">Disciplina</label>
                             <div class="form-group">
-                            <select id="idDisciplina" name="idDisciplina" class="form-control mdb-select md-form" required>
-                                <option value="" disabled selected>Selecione uma Disciplina</option> 
-                                @foreach ($disciplinas as $disciplina)
-                                <option value="{{$disciplina->id}}" >{{$disciplina->nome}} - {{$disciplina->nomeCurso}}</option>
-                                @endforeach
-                            </select>
+                                <select id="idDisciplina" name="idDisciplina" class="form-control mdb-select md-form" required>
+                                    <option value="" disabled selected>Selecione uma Disciplina</option> 
+                                    @foreach ($disciplinas as $disciplina)
+                                    <option value="{{$disciplina->id}}" >{{$disciplina->nome}} - {{$disciplina->nomeCurso}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <label for="idProfessor">Professor</label>
+                            <div class="form-group">
+                                <select id="idProfessor" name="idProfessor" class="form-control mdb-select md-form" required>
+                                    <option value="" disabled selected>Selecione um Professor</option> 
+                                    @foreach ($professores as $professor)
+                                    <option value="{{$professor->id}}" >{{$professor->nome}} - {{$professor->email}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -71,6 +78,7 @@
                                     <th>Semestre</th>
                                     <th>Disciplina</th>
                                     <th>Curso</th>
+                                    <th>Professor</th>
                                     <th class="no-sort"></th>
                                 </tr>
                             </thead>
@@ -82,6 +90,7 @@
                                         <td>{{$semestreDisciplina->descricaoSemestre}}</td>
                                         <td>{{$semestreDisciplina->nomeDisciplina}}</td>
                                         <td>{{$semestreDisciplina->nomeCurso}}</td>
+                                        <td>{{$semestreDisciplina->nomeProfessor}}</td>
                                         <td>
                                             <a href="" type="submit" class="badge badge-danger" >
                                                 <img src="{{asset('media\favicons\remove.png')}}">
@@ -97,6 +106,7 @@
                                     <th>Semestre</th>
                                     <th>Disciplina</th>
                                     <th>Curso</th>
+                                    <th>Professor</th>
                                     <th></th>
                                 </tr>
                             </tfoot>
@@ -127,6 +137,7 @@
                                     <th>Semestre</th>
                                     <th>Disciplina</th>
                                     <th>Curso</th>
+                                    <th>Professor</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -137,6 +148,7 @@
                                         <td>{{$historico->descricaoSemestre}}</td>
                                         <td>{{$historico->nomeDisciplina}}</td>
                                         <td>{{$historico->nomeCurso}}</td>
+                                        <td>{{$historico->nomeProfessor}}</td>
                                     </tr>
                                     <?php $cont ++; ?>
                                 @endforeach
@@ -147,6 +159,7 @@
                                     <th>Semestre</th>
                                     <th>Disciplina</th>
                                     <th>Curso</th>
+                                    <th>Professor</th>
                                 </tr>
                             </tfoot>
                         </table>

@@ -40,12 +40,17 @@ class SemestresController extends Controller
     {
         $semestre = $request->except('_token');
         $semestres = Semestres::all()->where('descricao', '=', $semestre['descricao']);
+        $ultimo = Semestres::all()->last();
 
-        if (count($semestres) > 0){
-            return back()->with('mensagem', 'Semestres já cadastrado!');
-        }else{
-            $semestre = Semestres::store($semestre);
-            return redirect()->action('SemestresController@index');
+        if ($ultimo['descricao'] <= $semestre['descricao']) {    
+            if (count($semestres) > 0){
+                return back()->with('mensagem', 'Semestres já cadastrado!');
+            }else{
+                $semestre = Semestres::store($semestre);
+                return redirect()->action('SemestresController@index');
+            }
+        }else {
+            return back()->with('mensagem', 'O novo semestre tem de ser maior que os cadastrados!');
         }
     }
 
@@ -89,8 +94,11 @@ class SemestresController extends Controller
      * @param  \App\Models\Semestres  $semestres
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Semestres $semestres)
+    public function destroy($id)
     {
-        //
+
+        $semestre = Semestres::find($id)->delete();
+
+        return redirect()->action('SemestresController@index');
     }
 }

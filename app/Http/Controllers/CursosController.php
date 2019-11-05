@@ -111,8 +111,10 @@ class CursosController extends Controller
      * @param  \App\Models\Cursos  $cursos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cursos $cursos)
+    public function destroy($id)
     {
-        //
+        $curso = Cursos::find($id)->delete();
+
+        return redirect()->action('CursosController@index');
     }
 }

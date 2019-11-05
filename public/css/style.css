@@ -11,6 +11,11 @@ div.block-header-default{
     font-weight: bold;
 }
 
+
+button.btn-block-option:hover{
+    color: white !important;
+}
+
 thead tr th{
     text-transform: none !important;
     font-weight: bold !important;
@@ -28,3 +33,4 @@ thead tr th{
     pointer-events: none!important; 
     cursor: default!important; 
 }
+

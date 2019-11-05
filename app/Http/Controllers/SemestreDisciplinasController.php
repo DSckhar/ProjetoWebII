@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Semestres;
 use App\Models\SemestreDisciplinas;
 use App\Models\Disciplinas;
+use App\Models\Professores;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -19,13 +20,14 @@ class SemestreDisciplinasController extends Controller
     {
         $user = Auth::user();
 
+        $professores = Professores::all()->sortBy('nome');
         $disciplinas = Disciplinas::listar()->sortBy('nome');
-        $semestreAtual = Semestres::all()->sortByDesc('created_at')->first();
+        $semestreAtual = Semestres::all()->last();
 
         $semestreDisciplinas = SemestreDisciplinas::listar()->where('idSemestre', '=', $semestreAtual['id']);
         $historicos = SemestreDisciplinas::listar()->where('idSemestre', '!=', $semestreAtual['id']);
 
-        return view('semestreDisciplina.index', compact('semestreDisciplinas','semestreAtual', 'disciplinas', 'historicos', 'user'));
+        return view('semestreDisciplina.index', compact('semestreDisciplinas', 'professores', 'semestreAtual', 'disciplinas', 'historicos', 'user'));
     }
 
     /**

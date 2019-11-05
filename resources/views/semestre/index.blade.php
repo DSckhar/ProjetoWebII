@@ -61,9 +61,11 @@
                                                     <td>{{$cont}}</td>
                                                     <td>{{$semestre->descricao}}</td>
                                                     <td>
-                                                        <a href="" type="submit" class="badge badge-danger" >
-                                                            <img src="{{asset('media\favicons\remove.png')}}">
-                                                        </a>
+                                                        @if($cont == 1)
+                                                        <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('semestre.deletado', $semestre->id)}}'" >
+                                                            <span data-feather="trash-2"></span>
+                                                        </button>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 <?php $cont ++; ?>
