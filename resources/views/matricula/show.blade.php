@@ -3,11 +3,18 @@
 <div class="content">
     <div class="block">
         <div class="block-header block-header-default">
-            <h2 class="block-title"><strong>MATRICULA DO ALUNO</strong></h2>
+            <h2 class="block-title"><strong>MATRÍCULA NO CURSO</strong></h2>
             
         </div>
         <div class="block-content">
             <div class="contanier-fluid">
+                <div class="row justify-content-end">
+                    <div class="col-1">
+                        <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('matricula.deletado', $matricula->id)}}'" >
+                            <span data-feather="trash-2"></span>
+                        </button>
+                    </div>
+                </div>
                 <div class="row justify-content-center">
                     <div class="col-4">
                         {!! csrf_field() !!}
@@ -16,10 +23,16 @@
                             <input id="aluno" class="form-control" value="{{$matricula->nomeAluno}}" type="text" name="nomeAluno"  disabled/>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <label for="curso">Curso</label>
                         <div class="form-group">
                             <input id="aluno" class="form-control" value="{{$matricula->nomeCurso}}" type="text" name="nomeAluno"  disabled/>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label for="curso">Valor</label>
+                        <div class="form-group">
+                            <input id="aluno" class="form-control" value="{{$matricula->valor}}" type="text" name="nomeAluno"  disabled/>
                         </div>
                     </div>
                 </div>
@@ -63,12 +76,12 @@
                                     <td>{{$matriculaSemestre->descricaoSemestre}}</td>
                                     <td>{{$matriculaSemestre->modulo}}</td>
                                     <td>
-                                        <button class="btn badge btn-outline-success" onclick="window.location.href=''" >
+                                        <button class="btn badge btn-outline-success" onclick="window.location.href='{{route('matriculaSemestre.show', $matriculaSemestre->id)}}'" >
                                             <span data-feather="eye"></span>
                                         </button>
                                     </td>
                                     <td>
-                                        <button class="btn badge btn-outline-danger" onclick="window.location.href=''" >
+                                        <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('matriculaSemestre.deletado', $matriculaSemestre->id)}}'" >
                                             <span data-feather="trash-2"></span>
                                         </button>
                                     </td>

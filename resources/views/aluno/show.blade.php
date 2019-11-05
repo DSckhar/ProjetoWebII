@@ -105,7 +105,7 @@
                                             </button>
                                         </td>
                                         <td>
-                                            <button class="btn badge btn-outline-danger" onclick="window.location.href=''" >
+                                            <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('matricula.deletado', $matricula->id)}}'" >
                                                 <span data-feather="trash-2"></span>
                                             </button>
                                         </td>

@@ -124,8 +124,12 @@ class MatriculasController extends Controller
      * @param  \App\Models\Matriculas  $matriculas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Matriculas $matriculas)
+    public function destroy($id)
     {
-        //
+        $matricula = Matriculas::find($id);
+        $idAluno = $matricula['idAluno'];
+        $matricula->delete();
+
+        return redirect()->action('AlunosController@show', $idAluno);
     }
 }

@@ -71,7 +71,7 @@
                                         <a href="{{route('disciplina.index')}}">Ver Todas</a>
                                     </li>
                                     <li>
-                                        <a href="{{route('semestreDisciplina')}}">Ver Correntes</a>
+                                        <a href="{{route('semestreDisciplina.index')}}">Ver Correntes</a>
                                     </li>
                                 </ul>
                             </li>

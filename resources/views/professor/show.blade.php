@@ -82,7 +82,6 @@
                                     <th>Disciplina</th>
                                     <th>Curso</th>
                                     <th class="no-sort"></th>
-                                    <th class="no-sort"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,13 +93,8 @@
                                     <td>{{$disciplinasCorrente->nomeDisciplina}}</td>
                                     <td>{{$disciplinasCorrente->nomeCurso}}</td>
                                     <td>
-                                        <button class="btn badge btn-outline-success" onclick="window.location.href=''" >
+                                        <button class="btn badge btn-outline-success" onclick="window.location.href='{{route('semestreDisciplina.show', $disciplinasCorrente->id)}}'" >
                                             <span data-feather="eye"></span>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button class="btn badge btn-outline-danger" onclick="window.location.href=''" >
-                                            <span data-feather="trash-2"></span>
                                         </button>
                                     </td>
                                 </tr>
@@ -113,7 +107,6 @@
                                     <th>Semestre</th>
                                     <th>Disciplina</th>
                                     <th>Curso</th>
-                                    <th></th>
                                     <th></th>
                                 </tr>
                             </tfoot>
@@ -156,7 +149,7 @@
                                     <td>{{$lecionada->nomeDisciplina}}</td>
                                     <td>{{$lecionada->nomeCurso}}</td>
                                     <td>
-                                        <button class="btn badge btn-outline-success" onclick="window.location.href=''" >
+                                        <button class="btn badge btn-outline-success" onclick="window.location.href='{{route('semestreDisciplina.show', $lecionada->id)}}'" >
                                             <span data-feather="eye"></span>
                                         </button>
                                     </td>

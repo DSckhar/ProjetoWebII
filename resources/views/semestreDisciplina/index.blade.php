@@ -80,6 +80,7 @@
                                     <th>Curso</th>
                                     <th>Professor</th>
                                     <th class="no-sort"></th>
+                                    <th class="no-sort"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -92,14 +93,19 @@
                                         <td>{{$semestreDisciplina->nomeCurso}}</td>
                                         <td>{{$semestreDisciplina->nomeProfessor}}</td>
                                         <td>
-                                            <a href="" type="submit" class="badge badge-danger" >
-                                                <img src="{{asset('media\favicons\remove.png')}}">
-                                            </a>
+                                            <button class="btn badge btn-outline-success" onclick="window.location.href='{{route('semestreDisciplina.show', $semestreDisciplina->id)}}'" >
+                                                <span data-feather="eye"></span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('semestreDisciplina.deletado', $semestreDisciplina->id)}}'" >
+                                                <span data-feather="trash-2"></span>
+                                            </button>
                                         </td>
                                     </tr>
                                     <?php $cont ++; ?>
                                 @endforeach
-                                
+                            <tbody>                            
                             <tfoot>
                                 <tr>
                                     <th>Nº</th>
@@ -107,6 +113,7 @@
                                     <th>Disciplina</th>
                                     <th>Curso</th>
                                     <th>Professor</th>
+                                    <th></th>
                                     <th></th>
                                 </tr>
                             </tfoot>
@@ -138,6 +145,7 @@
                                     <th>Disciplina</th>
                                     <th>Curso</th>
                                     <th>Professor</th>
+                                    <th class="no-sort"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -149,6 +157,11 @@
                                         <td>{{$historico->nomeDisciplina}}</td>
                                         <td>{{$historico->nomeCurso}}</td>
                                         <td>{{$historico->nomeProfessor}}</td>
+                                        <td>
+                                            <button class="btn badge btn-outline-success" onclick="window.location.href='{{route('semestreDisciplina.show', $historico->id)}}'" >
+                                                <span data-feather="eye"></span>
+                                            </button>
+                                        </td>
                                     </tr>
                                     <?php $cont ++; ?>
                                 @endforeach
@@ -160,6 +173,7 @@
                                     <th>Disciplina</th>
                                     <th>Curso</th>
                                     <th>Professor</th>
+                                    <th></th>
                                 </tr>
                             </tfoot>
                         </table>

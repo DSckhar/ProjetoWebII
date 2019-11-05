@@ -16,7 +16,6 @@
                                         <th>Aluno</th>
                                         <th>Curso</th>
                                         <th class="no-sort"></th>
-                                        <th class="no-sort"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -27,14 +26,9 @@
                                         <td>{{$matricula->nomeAluno}}</td>
                                         <td>{{$matricula->nomeCurso}}</td>
                                         <td>
-                                            <a href="" type="submit" class="badge badge-success" >
-                                                <img src="{{asset('media\favicons\eye.png')}}">
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="" type="submit" class="badge badge-danger" >
-                                                <img src="{{asset('media\favicons\remove.png')}}">
-                                            </a>
+                                            <button class="btn badge btn-outline-success" onclick="window.location.href='{{route('matricula.show', $matricula->id)}}'" >
+                                                <span data-feather="eye"></span>
+                                            </button>
                                         </td>
                                     </tr>
                                     <?php $cont ++;?>
@@ -45,7 +39,6 @@
                                         <th>Nº</th>
                                         <th>Aluno</th>
                                         <th>Curso</th>
-                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </tfoot>

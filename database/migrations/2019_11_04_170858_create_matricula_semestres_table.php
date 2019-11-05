@@ -16,6 +16,7 @@ class CreateMatriculaSemestresTable extends Migration
         Schema::create('matricula_semestres', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('modulo');
+            $table->decimal('valor', 10,2)->default(0.0)->nullable();
             $table->unsignedBigInteger('idMatricula');
             $table->foreign('idMatricula')->references('id')->on('matriculas')->onDelete('cascade');   
             $table->unsignedBigInteger('idSemestre');

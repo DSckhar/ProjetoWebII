@@ -44,7 +44,7 @@ class SemestresController extends Controller
 
         if ($ultimo['descricao'] <= $semestre['descricao']) {    
             if (count($semestres) > 0){
-                return back()->with('mensagem', 'Semestres já cadastrado!');
+                return back()->with('mensagem', 'Semestre já cadastrado!');
             }else{
                 $semestre = Semestres::store($semestre);
                 return redirect()->action('SemestresController@index');

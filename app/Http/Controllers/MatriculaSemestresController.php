@@ -48,14 +48,19 @@ class MatriculaSemestresController extends Controller
         $matriculaSemestres = MatriculaSemestres::all()->where('idMatricula', '=', $id);
 
         $curso = Cursos::find($matricula['idCurso']);
-
+        
         if(count($matriculaSemestres) >= $curso['duracao']){
             $matriculaSemestre['modulo'] = $curso['duracao'];
         }else{
             $matriculaSemestre['modulo'] = count($matriculaSemestres) + 1;
         }
 
-        $matriculaSemestre = MatriculaSemestres::store($matriculaSemestre);
+        $ms = MatriculaSemestres::all()->where('idMatricula', '=', $id)
+                                        ->where('idSemestre', '=', $semestre['id']);
+                                        
+        if (count($ms) == 0 ) {
+            $matriculaSemestre = MatriculaSemestres::store($matriculaSemestre);            
+        }
 
         return redirect()->route('matricula.show', $id);
 
@@ -67,9 +72,20 @@ class MatriculaSemestresController extends Controller
      * @param  \App\Models\MatriculaSemestres  $matriculaSemestres
      * @return \Illuminate\Http\Response
      */
-    public function show(MatriculaSemestres $matriculaSemestres)
+    public function show($id)
     {
-        //
+        $user = Auth::user();
+
+        $matriculaSemestre = MatriculaSemestres::find($id);
+        $matricula = Matriculas::find($matriculaSemestre['idMatricula']);
+        $aluno = Alunos::find($matricula['idAluno']);
+        $curso = Cursos::find($matricula['idCurso']);
+        $semestre = Semestres::find($matriculaSemestre['idSemestre']);
+        $matriculaSemestre['nomeAluno'] = $aluno['nome'];
+        $matriculaSemestre['nomeCurso'] = $curso['nome'];
+        $matriculaSemestre['descricaoSemestre'] = $semestre['descricao'];
+        
+        return view('matriculaSemestre.show', compact('user', 'matriculaSemestre'));
     }
 
     /**
@@ -101,8 +117,12 @@ class MatriculaSemestresController extends Controller
      * @param  \App\Models\MatriculaSemestres  $matriculaSemestres
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MatriculaSemestres $matriculaSemestres)
+    public function destroy($id)
     {
-        //
+        $matriculaSemestre = MatriculaSemestres::find($id);
+        $idMatricula = $matriculaSemestre['idMatricula'];
+        $matriculaSemestre->delete();
+
+        return redirect()->action('MatriculasController@show', $idMatricula);
     }
 }

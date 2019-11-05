@@ -6,6 +6,7 @@ use App\Models\Semestres;
 use App\Models\SemestreDisciplinas;
 use App\Models\Disciplinas;
 use App\Models\Professores;
+use App\Models\Cursos;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -67,9 +68,21 @@ class SemestreDisciplinasController extends Controller
      * @param  \App\Models\SemestreDisciplinas  $semestreDisciplinas
      * @return \Illuminate\Http\Response
      */
-    public function show(SemestreDisciplinas $semestreDisciplinas)
+    public function show($id)
     {
-        //
+        $user = Auth::user();
+
+        $semestreDisciplina = SemestreDisciplinas::find($id);
+        $semestre = Semestres::find($semestreDisciplina['idSemestre']);
+        $professor = Professores::find($semestreDisciplina['idProfessor']);
+        $disciplina = Disciplinas::find($semestreDisciplina['idDisciplina']);
+        $curso = Cursos::find($disciplina['idCurso']);
+        $semestreDisciplina['descricaoSemestre'] = $semestre['descricao'];
+        $semestreDisciplina['nomeProfessor'] = $professor['nome'];
+        $semestreDisciplina['nomeDisciplina'] = $disciplina['nome'];
+        $semestreDisciplina['nomeCurso'] = $curso['nome'];
+
+        return view('semestreDisciplina.show', compact('user', 'semestreDisciplina'));
     }
 
     /**
@@ -101,8 +114,10 @@ class SemestreDisciplinasController extends Controller
      * @param  \App\Models\SemestreDisciplinas  $semestreDisciplinas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SemestreDisciplinas $semestreDisciplinas)
+    public function destroy($id)
     {
-        //
+        $semestreDisciplina = SemestreDisciplinas::find($id)->delete();
+
+        return redirect()->action('SemestreDisciplinasController@index');
     }
 }

@@ -14,6 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/sair', 'HomeController@logout')->name('logout');
 
 Route::group(['middleware' => 'auth'], function(){
     
@@ -42,17 +43,19 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('semestre', 'SemestresController');
 
     //SEMESTREDISCIPLINAS
-    Route::post('semestredisciplina/cadastrado', 'SemestreDisciplinasController@store')->name('semestreDisciplina.store');
-    Route::post('semestredisciplina/editado', 'SemestreDisciplinasController@update')->name('semestredisciplina.editado');
-    Route::get('semestredisciplina/deletado/{id}', 'SemestreDisciplinasController@destroy')->name('semestredisciplina.deletado');
-    Route::get('semestredisciplina', 'SemestreDisciplinasController@index')->name('semestreDisciplina');
+    Route::post('semestreDisciplina/cadastrado', 'SemestreDisciplinasController@store')->name('semestreDisciplina.store');
+    Route::post('semestreDisciplina/editado', 'SemestreDisciplinasController@update')->name('semestreDisciplina.editado');
+    Route::get('semestreDisciplina/deletado/{id}', 'SemestreDisciplinasController@destroy')->name('semestreDisciplina.deletado');
+    Route::resource('semestreDisciplina', 'SemestreDisciplinasController');
 
     //MATRICULA
     Route::get('matricula/cadastrar/{id}', 'MatriculasController@create')->name('matricula.criar');
+    Route::get('matricula/deletado/{id}', 'MatriculasController@destroy')->name('matricula.deletado');
     Route::resource('matricula', 'MatriculasController');
 
     //MATRICULASEMESTRES
     Route::get('matriculaSemestre/cadastrar/{id}', 'MatriculaSemestresController@store')->name('matriculaSemestre.criar');
+    Route::get('matriculaSemestre/deletado/{id}', 'MatriculaSemestresController@destroy')->name('matriculaSemestre.deletado');
     Route::resource('matriculaSemestre', 'MatriculaSemestresController');
 
 });

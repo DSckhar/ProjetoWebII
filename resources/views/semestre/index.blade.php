@@ -7,7 +7,7 @@
         </div>
         <div class="contanier-fluid">
             <div class="row justify-content-between">
-                <div class="col-4">
+                <div class="col-5">
                     <div class="content">
                         <div class="contanier-fluid">
                             <h5 style="text-align: center">Novo Semestre</h5>
@@ -22,7 +22,7 @@
                                     </div>
                                 </div>
                                 <div class="row justify-content-center">
-                                    <div class="col-10">
+                                    <div class="col-8">
                                         @if(session('mensagem'))
                                             <div class="alert alert-danger">
                                                 <span>{{session('mensagem')}}</span>
@@ -41,11 +41,11 @@
                     </div>
                 </div>
 
-                <div class="col-8">
+                <div class="col-7">
                     <div class="content">
                         <div class="contanier-fluid">
                             <div class="row justify-content-center">
-                                <div class="col-12">
+                                <div class="col-10">
                                     <table id="tabela" class="display table table-striped" style="width:100%">
                                         <thead>
                                             <tr>

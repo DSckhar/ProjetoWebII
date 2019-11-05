@@ -81,8 +81,6 @@
                                     <th>Nº</th>
                                     <th>Semestre</th>
                                     <th>Professor</th>
-                                    <th>Status</th>
-                                    <th class="no-sort"></th>
                                     <th class="no-sort"></th>
                                 </tr>
                             </thead>
@@ -107,8 +105,6 @@
                                     <th>Nº</th>
                                     <th>Semestre</th>
                                     <th>Professor</th>
-                                    <th>Status</th>
-                                    <th></th>
                                     <th></th>
                                 </tr>
                             </tfoot>
