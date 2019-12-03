@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\MatriculaSemestres;
+use App\Models\MatriculaDisciplinas;
 use App\Models\Matriculas;
 use App\Models\Semestres;
 use App\Models\Alunos;
@@ -84,8 +85,13 @@ class MatriculaSemestresController extends Controller
         $matriculaSemestre['nomeAluno'] = $aluno['nome'];
         $matriculaSemestre['nomeCurso'] = $curso['nome'];
         $matriculaSemestre['descricaoSemestre'] = $semestre['descricao'];
+
+        $matriculaDisciplinas = MatriculaDisciplinas::listarMatSemestre($id);
+
+        $ultimoSemestre = Semestres::all()->last();
+        //dd($ultimoSemestre);
         
-        return view('matriculaSemestre.show', compact('user', 'matriculaSemestre'));
+        return view('matriculaSemestre.show', compact('user', 'matriculaSemestre', 'matriculaDisciplinas', 'ultimoSemestre'));
     }
 
     /**

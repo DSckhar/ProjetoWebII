@@ -16,6 +16,7 @@ class CreateMatriculaDisciplinasTable extends Migration
         Schema::create('matricula_disciplinas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->decimal('media', 4,2)->default(0.0)->nullable();
+            $table->string('status')->default('matriculado')->nullable();
             $table->unsignedBigInteger('idMatriculaSemestre');
             $table->foreign('idMatriculaSemestre')->references('id')->on('matricula_semestres')->onDelete('cascade'); 
             $table->unsignedBigInteger('idSemestreDisciplina');

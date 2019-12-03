@@ -105,32 +105,10 @@
                                 </ul>
                             </li>
                             <li>
-                                <a class="nav-submenu active" data-toggle="nav-submenu" href="#">
-                                    <i class="si si-note"></i>
-                                    <span class="sidebar-mini-hide"></span>
+                                <a class="nav-menu active" href="{{route('sobre')}}">
+                                    <i class="si si-exclamation"></i>
+                                    <span class="sidebar-mini-hide">Sobre</span>
                                 </a>
-                                <ul>
-                                    <li>
-                                        <a href="http://omegacursos.com/matricula">Histórico de Cursos</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://omegacursos.com/matdisciplina">Histórico de Disciplinas</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="nav-submenu active" data-toggle="nav-submenu" href="#">
-                                    <i class="si si-book-open"></i>
-                                    <span class="sidebar-mini-hide">Exemplo</span>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="/disciplina">Vizualizar</a>
-                                    </li>
-                                    <li>
-                                        <a href="/disciplina/cadastrar">Cadastrar</a>
-                                    </li>
-                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -151,10 +129,10 @@
                         
                     </div>
                     <div class="col-2 align-self-end content-header-section">
-                        <div class="row justify-content-between">
-                            <div class="col-8">
+                        <div class="row justify-content-end">
+                            <!-- <div class="col-8">
                                 <a class="btn btn-outline-dark" href=""><strong>Perfil</strong></a>
-                            </div>
+                            </div> -->
                             <div class="col-4">
                                 <a class="si si-logout btn btn-outline-dark" alt="Sair" href="{{ route('logout') }}"></a>
                             </div>
@@ -200,8 +178,9 @@
         </script>
         <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
         <script>
-            feather.replace()
+            feather.replace();
         </script>
+        
         </footer>
     </body>
 </html>

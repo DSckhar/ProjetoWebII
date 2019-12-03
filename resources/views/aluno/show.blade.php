@@ -29,7 +29,7 @@
                             </div>
                             <label for="nascimento">Data de Nascimento</label>
                             <div class="form-group">
-                                <input id="nascimento" value='{{$aluno->nascimento}}' class="form-control" type="date" name="nascimento" required/>
+                                <input id="nascimento" value='{{$aluno->nascimento}}' min="{{ date('Y-m-d', strtotime('-100 years')) }}" max="{{ date('Y-m-d', strtotime('-15 years')) }}" class="form-control" type="date" name="nascimento" required/>
                             </div>
                         </div>
                         <div class="col-4">

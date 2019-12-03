@@ -61,7 +61,7 @@
                                                     <td>{{$cont}}</td>
                                                     <td>{{$semestre->descricao}}</td>
                                                     <td>
-                                                        @if($cont == 1)
+                                                        @if($semestre->status == "ativo")
                                                         <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('semestre.deletado', $semestre->id)}}'" >
                                                             <span data-feather="trash-2"></span>
                                                         </button>

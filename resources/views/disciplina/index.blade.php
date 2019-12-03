@@ -16,7 +16,7 @@
                             {!! csrf_field() !!}
                             <label for="nome">Nome</label>
                             <div class="form-group">
-                                <input id="nome" class="form-control" type="text" name="nome" maxlength="30" required/>
+                                <input id="nome" style="text-transform: uppercase;" class="form-control" type="text" name="nome" maxlength="30" required/>
                             </div>
                             <label for="valor">Preço</label>
                             <div class="form-group">
