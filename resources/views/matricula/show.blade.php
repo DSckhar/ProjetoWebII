@@ -81,9 +81,11 @@
                                         </button>
                                     </td>
                                     <td>
+                                        @if($cont == 1)
                                         <button class="btn badge btn-outline-danger" onclick="window.location.href='{{route('matriculaSemestre.deletado', $matriculaSemestre->id)}}'" >
                                             <span data-feather="trash-2"></span>
                                         </button>
+                                        @endif
                                     </td>
                                 </tr>
                                 <?php $cont ++;?>

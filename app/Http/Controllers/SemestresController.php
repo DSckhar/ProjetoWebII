@@ -39,19 +39,29 @@ class SemestresController extends Controller
     public function store(Request $request)
     {
         $semestre = $request->except('_token');
+
         $semestres = Semestres::all()->where('descricao', '=', $semestre['descricao']);
         $ultimo = Semestres::all()->last();
 
-        if ($ultimo['descricao'] <= $semestre['descricao']) {    
-            if (count($semestres) > 0){
-                return back()->with('mensagem', 'Semestre já cadastrado!');
-            }else{
-                $semestre = Semestres::store($semestre);
-                return redirect()->action('SemestresController@index');
+        if ($ultimo != null) {
+            if ($ultimo['descricao'] <= $semestre['descricao']) {    
+                if (count($semestres) > 0){
+                    return back()->with('mensagem', 'Semestre já cadastrado!');
+                }else{
+                    $ultimo->status = "inativo";
+                    $ultimo->save();
+
+                    $semestre = Semestres::store($semestre);
+                    return redirect()->action('SemestresController@index');
+                }
+            }else {
+                return back()->with('mensagem', 'O novo semestre tem de ser maior que os cadastrados!');
             }
-        }else {
-            return back()->with('mensagem', 'O novo semestre tem de ser maior que os cadastrados!');
+        }else{
+            $semestre = Semestres::store($semestre);
+            return redirect()->action('SemestresController@index');
         }
+        
     }
 
     /**

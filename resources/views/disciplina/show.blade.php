@@ -24,7 +24,7 @@
                         <label for="nome">Nome</label>
                         <div class="form-group">
                             <input id="id" value="{{$disciplina->id}}" class="form-control" type="hidden" name="id" required/>
-                            <input id="nome" value="{{$disciplina->nome}}" class="form-control" type="text" name="nome" maxlength="30" required/>
+                            <input id="nome" value="{{$disciplina->nome}}" style="text-transform: uppercase;" class="form-control" type="text" name="nome" maxlength="30" required/>
                         </div>
                         <label for="valor">Preço</label>
                         <div class="form-group">
@@ -66,7 +66,7 @@
 <div class="content">
     <div class="block">
         <div class="block-header block-header-default">
-            <h2 class="block-title"><strong>OCORRÊNCIAS</strong></h2>
+            <h2 class="block-title"><strong>OFERTAS</strong></h2>
             <div class="block-options">
                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
             </div>

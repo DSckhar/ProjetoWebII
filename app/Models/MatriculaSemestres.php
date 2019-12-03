@@ -10,7 +10,8 @@ class MatriculaSemestres extends Model
     protected $fillable = [
         'idMatricula',
         'idSemestre',
-        'modulo'
+        'modulo',
+        'valor'
     ];
 
     public static function store($matriculaSemestre){
@@ -29,7 +30,8 @@ class MatriculaSemestres extends Model
             ->join('semestres', 'semestres.id', '=', 'matricula_semestres.idSemestre')
             ->join('cursos', 'cursos.id', '=', 'matriculas.idCurso')
             ->join('alunos', 'alunos.id', '=', 'matriculas.idAluno')
-            ->select('matriculas.*', 'matricula_semestres.*', 'semestres.descricao as descricaoSemestre', 'cursos.nome as nomeCurso', 'alunos.nome as nomeAluno')
+            ->select('matriculas.*', 'matricula_semestres.*', 'semestres.descricao as descricaoSemestre', 
+            'cursos.nome as nomeCurso', 'alunos.nome as nomeAluno')
             ->get();
         
         return $matriculaSemestres;

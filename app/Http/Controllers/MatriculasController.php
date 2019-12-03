@@ -80,7 +80,7 @@ class MatriculasController extends Controller
         $matricula['nomeAluno'] = $aluno['nome'];
         $matricula['nomeCurso'] = $curso['nome'];
 
-        $matriculaSemestres = MatriculaSemestres::listar()->where('idAluno', '=', $matricula['idAluno']);
+        $matriculaSemestres = MatriculaSemestres::listar()->where('idMatricula', '=', $matricula['id'])->sortByDesc('created_at');
 
         $atual = Semestres::all()->last();
         $ultimaMatSemestre = MatriculaSemestres::all()->where('idMatricula', '=', $id)->last();

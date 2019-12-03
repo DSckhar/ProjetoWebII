@@ -58,4 +58,27 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('matriculaSemestre/deletado/{id}', 'MatriculaSemestresController@destroy')->name('matriculaSemestre.deletado');
     Route::resource('matriculaSemestre', 'MatriculaSemestresController');
 
+    //MATRICULADISCIPLINAS
+    Route::get('matriculaDisciplina/cadastrar/{id}', 'MatriculaDisciplinasController@create')->name('matriculaDisciplina.criar');
+    Route::get('matriculaDisciplina/deletado/{id}', 'MatriculaDisciplinasController@destroy')->name('matriculaDisciplina.deletado');
+    Route::resource('matriculaDisciplina', 'MatriculaDisciplinasController');
+
+    //AULAS
+    Route::get('aula/cadastrar/{id}', 'AulasController@create')->name('aula.criar');
+    Route::get('aula/deletado/{id}', 'AulasController@destroy')->name('aula.deletado');
+    Route::resource('aula', 'AulasController');
+
+    //Frequencia
+    Route::get('frequencia/cadastrar/{id}', 'FrequenciasController@create')->name('frequencia.criar');
+    Route::post('frequencia/editado', 'FrequenciasController@update')->name('frequencia.editado');
+    Route::resource('frequencia', 'FrequenciasController');
+
+    //Notas
+    Route::get('nota/cadastrar/{id}', 'NotasController@create')->name('nota.criar');
+    Route::post('nota/editado', 'NotasController@update')->name('nota.editado');
+    Route::resource('nota', 'NotasController');
+
+    Route::get('/sobre', function () {
+        return view('sobre.index');
+    })->name('sobre');
 });

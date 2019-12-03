@@ -6,7 +6,9 @@ use App\Models\Semestres;
 use App\Models\SemestreDisciplinas;
 use App\Models\Disciplinas;
 use App\Models\Professores;
+use App\Models\Frequencias;
 use App\Models\Cursos;
+use App\Models\Aulas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -81,8 +83,30 @@ class SemestreDisciplinasController extends Controller
         $semestreDisciplina['nomeProfessor'] = $professor['nome'];
         $semestreDisciplina['nomeDisciplina'] = $disciplina['nome'];
         $semestreDisciplina['nomeCurso'] = $curso['nome'];
+        $aulas = Aulas::all()->where('idSemestreDisciplina', '=', $id)->sortByDesc('data');
+        $alunos = SemestreDisciplinas::listarAlunos($id)->sortBy('nomeAluno');
+        $notas = SemestreDisciplinas::listarNotas($id);
+        $frequencias = Frequencias::listar($id)->sortBy('nomeAluno');
 
-        return view('semestreDisciplina.show', compact('user', 'semestreDisciplina'));
+
+        foreach ($alunos as $aluno) {
+            $aluno->nota1 = $aluno->nota2 = $aluno->nota3 = '--';
+            foreach($notas as $nota){
+                if($aluno->idMatriculaDisciplina == $nota->idMatriculaDisciplina){
+                    if($nota->referencia == "Avaliação 1"){
+                        $aluno->nota1 = $nota->nota;
+                    }
+                    if($nota->referencia == "Avaliação 2"){
+                        $aluno->nota2 = $nota->nota;
+                    }
+                    if($nota->referencia == "Avaliação 3"){
+                        $aluno->nota3 = $nota->nota;
+                    }
+                }
+            }
+        }
+            
+        return view('semestreDisciplina.show', compact('user', 'semestreDisciplina', 'aulas', 'alunos', 'notas', 'frequencias'));
     }
 
     /**

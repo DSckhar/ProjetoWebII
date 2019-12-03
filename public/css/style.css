@@ -34,3 +34,11 @@ thead tr th{
     cursor: default!important; 
 }
 
+.notas{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.notas:hover{
+    color:  #9ccc65 !important;
+}

@@ -8,6 +8,7 @@ class Semestres extends Model
 {
     protected $fillable = [
         'descricao',
+        'status'
     ];
 
     public static function store($semestre){
